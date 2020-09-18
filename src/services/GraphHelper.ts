@@ -26,6 +26,7 @@ export class GraphHelper {
             webUrl: item.webUrl
           });
         });
+        console.log('One Drive Folders: ', folders);
         return folders;
       });
   }
@@ -39,7 +40,6 @@ export class GraphHelper {
       .get()
       .then((response): any => {
         let folders: Array<IFolder> = new Array<IFolder>();
-        console.log(response.value);
         response.value.forEach((item) => {
           folders.push({
             id: item.id,
@@ -49,7 +49,7 @@ export class GraphHelper {
             webUrl: item.webUrl
           });
         });
-        console.log(folders);
+        console.log(`One Drive Sub-Folders for ${folder.name}: `, folders);
         return folders;
       });
   }
@@ -60,7 +60,7 @@ export class GraphHelper {
       .version('v1.0')
       .responseType('blob')
       .get();
-    console.log(attachmentContent);
+    console.log(`Attachment Content for ${attachmentId}: `, attachmentContent);
     return attachmentContent;
   }
 
@@ -69,6 +69,7 @@ export class GraphHelper {
     const saveResult = await this.graphClient
       .api(odApi)
       .put(mimeStream);
+    console.log(`Save Attachment result for ${fileName}: `, saveResult);
     return saveResult;
   }
 
@@ -84,7 +85,9 @@ export class GraphHelper {
       .post(JSON.stringify(sessionOptions))
       .then(async (response): Promise<any> => {
         try {
+          console.log(`Upload URL created for ${fileName}: ${response.uploadUrl}`);
           const resp = await this.saveToUploadSession(mimeStream, response.uploadUrl);
+          console.log(`Save Large Attachment result for ${fileName}: `, resp);
           return resp;
         }
         catch (err) {

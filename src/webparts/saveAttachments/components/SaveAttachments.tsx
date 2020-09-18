@@ -10,7 +10,6 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
 initializeIcons();
 
-
 export const SaveAttachments: React.FunctionComponent<ISaveAttachmentsProps> = (props) => {
   const [folders, setFolders] = useState<IFolder[]>([]);
   const [selectedFolder, updateSelectedFolder] = useState<IFolder>(null);
@@ -22,7 +21,6 @@ export const SaveAttachments: React.FunctionComponent<ISaveAttachmentsProps> = (
 
   useEffect(() => {
     props.graphHelper.getOneDriveFolders().then((_folders) => {
-      console.log('Folders: ', _folders);
       setFolders(_folders);
     });
   }, []);
@@ -41,7 +39,7 @@ export const SaveAttachments: React.FunctionComponent<ISaveAttachmentsProps> = (
     updateLoading(true);
     try {
       await Promise.all(checkedAttachments.map(async (attachment) => {
-        const attachmentContent = await props.graphHelper.getAttachmentContent(props.mail.id, attachment.id);
+        const attachmentContent = await props.graphHelper.getAttachmentContent(props.mail.id, attachment.id.replace(/\//g, '-').replace(/\+/g, '_'));
         if (attachmentContent.size > 4 * 1024 * 1024) {
           await props.graphHelper.saveLargeAttachment(attachmentContent, attachment.name, selectedFolder.id);
         } else {
@@ -128,7 +126,10 @@ export const SaveAttachments: React.FunctionComponent<ISaveAttachmentsProps> = (
                 </div>
               }
               <br />
-              <PrimaryButton text='Save' onClick={copyToOneDrive} />
+              <PrimaryButton text='Save'
+                onClick={copyToOneDrive}
+                disabled={selectedFolder === null || checkedAttachments.length === 0 ? true : false}
+              />
             </div>
           }
           {props.mail && props.mail.attachments.length === 0 &&
