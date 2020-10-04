@@ -2,7 +2,7 @@
 
 ## Summary
 
-This SPFx Outlook Add-In lets users copy any email attachments to a One Drive folder. The users can select any One Drive folder/subfolder and choose the attachments that need to be copied. It uses Microsoft Graph API to fetch the One Drive folders and upload the attachment files.
+This SPFx Outlook Add-In lets users save any email attachments to a One Drive folder. The users can select any One Drive folder/subfolder and choose the attachments that need to be saved. It uses Microsoft Graph API to fetch the One Drive folders and upload the attachment files.
 
 ![Save Attachments](./assets/SaveAttachments.gif)
 
@@ -15,7 +15,7 @@ This SPFx Outlook Add-In lets users copy any email attachments to a One Drive fo
 This web part illustrates the below features for creating Outlook Add-Ins using SPFx.
 
 * Select Office context and attributes of currently selected mail
-* Requesting **Mail.ReadWrite** and **Files.ReadWrite** permission scopes for Microsoft Graph through the `webApiPermissionRequests` property in `package-solution.json`
+* Requesting **Mail.Read** and **Files.ReadWrite** permission scopes for Microsoft Graph through the `webApiPermissionRequests` property in `package-solution.json`
 * Use Microsoft Graph to retrieve folders and subfolders for OneDrive
 * Use Microsoft Graph to retrieve complete mail mimestream by given ID
 * Use Microsoft Graph to save normal or big files (in size bigger 4MB) with different concepts

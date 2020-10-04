@@ -10,7 +10,7 @@
     "webApiPermissionRequests": [
       {
         "resource": "Microsoft Graph",
-        "scope": "Mail.ReadWrite"
+        "scope": "Mail.Read"
       },
       {
         "resource": "Microsoft Graph",

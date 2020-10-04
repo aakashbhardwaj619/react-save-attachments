@@ -17,7 +17,7 @@ export const SaveAttachments: React.FunctionComponent<ISaveAttachmentsProps> = (
   const [status, updateStatus] = useState('');
   const [loading, updateLoading] = useState<boolean>(undefined);
 
-  const successMessage = 'Attachments copied successfully';
+  const successMessage = 'Attachments saved successfully';
 
   useEffect(() => {
     props.graphHelper.getOneDriveFolders().then((_folders) => {
@@ -122,7 +122,7 @@ export const SaveAttachments: React.FunctionComponent<ISaveAttachmentsProps> = (
               {loading === true &&
                 <div>
                   <Spinner />
-                  <div className={styles.loaderText}>Please wait...</div>
+                  <div className={styles.loaderText}>Uploading...</div>
                 </div>
               }
               <br />

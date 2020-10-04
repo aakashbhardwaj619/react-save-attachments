@@ -76,7 +76,7 @@
           <bt:Image id="Icon.80x80" DefaultValue="https://cdn.graph.office.net/prod/media/shared/addin-icon.png"/>
         </bt:Images>
         <bt:Urls>
-          <bt:Url id="Taskpane.Url" DefaultValue="https://_SharePointTenantUrl_/_layouts/15/outlookhostedapp.aspx?componentId=04634d50-d72c-45ec-81d0-7b1f803800da&amp;isConfigureMode=true" />
+          <bt:Url id="Taskpane.Url" DefaultValue="https://_SharePointTenantUrl_/_layouts/15/outlookhostedapp.aspx?componentId=04634d50-d72c-45ec-81d0-7b1f803800da" />
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="GroupLabel" DefaultValue="Add-in groupLabel"/>
